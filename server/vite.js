@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import express from "express";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -19,7 +20,6 @@ export async function setupVite(app, server) {
   const vite = await (await import("vite")).createServer({
     server: { middlewareMode: true },
     appType: "custom",
-    root: path.resolve(__dirname, "../"),
   });
 
   app.use(vite.ssrFixStacktrace);

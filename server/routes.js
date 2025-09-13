@@ -75,6 +75,17 @@ export function registerRoutes(app) {
     }
   });
 
+  app.put("/api/user/profile", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    try {
+      const user = await storage.updateUser(req.user.id, req.body);
+      if (!user) return res.status(404).json({ message: "User not found" });
+      res.json(user);
+    } catch (error) {
+      res.status(400).json({ message: "Failed to update user profile" });
+    }
+  });
+
   // User Stats API
   app.get("/api/user/stats", async (req, res) => {
     if (!req.isAuthenticated()) return res.sendStatus(401);
