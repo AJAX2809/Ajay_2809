@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 console.log("Starting server...");
 import { registerRoutes } from "./routes.js";
