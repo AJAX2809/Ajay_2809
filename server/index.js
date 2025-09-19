@@ -1,4 +1,5 @@
 import express from "express";
+console.log("Starting server...");
 import { registerRoutes } from "./routes.js";
 import { setupVite, serveStatic, log } from "./vite.js";
 
@@ -61,6 +62,7 @@ app.use((req, res, next) => {
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
   const port = parseInt(process.env.PORT || '5000', 10);
+  console.log(`Attempting to listen on port ${port}...`);
   app.listen(port, () => {
     log(`serving on port ${port}`);
   });

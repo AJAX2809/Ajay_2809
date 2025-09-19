@@ -3,6 +3,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Home, Route, Users, Briefcase, User, GraduationCap, Settings, Menu, X } from "lucide-react";
 
 export function Sidebar() {
   const [location] = useLocation();
@@ -10,11 +11,11 @@ export function Sidebar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const navigation = [
-    { path: "/", icon: "fas fa-home", label: "Dashboard" },
-    { path: "/learning-path", icon: "fas fa-route", label: "Learning Path" },
-    { path: "/community", icon: "fas fa-users", label: "Community" },
-    { path: "/opportunities", icon: "fas fa-briefcase", label: "Opportunities" },
-    { path: "/profile", icon: "fas fa-user", label: "Profile" },
+    { path: "/", Icon: Home, label: "Dashboard" },
+    { path: "/learning-path", Icon: Route, label: "Learning Path" },
+    { path: "/community", Icon: Users, label: "Community" },
+    { path: "/opportunities", Icon: Briefcase, label: "Opportunities" },
+    { path: "/profile", Icon: User, label: "Profile" },
   ];
 
   const isActive = (path) => {
@@ -45,7 +46,7 @@ export function Sidebar() {
           <div className="p-6 border-b border-border">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <i className="fas fa-graduation-cap text-primary-foreground text-lg"></i>
+                <GraduationCap className="text-primary-foreground w-6 h-6" />
               </div>
               <div>
                 <h1 className="font-bold text-lg text-foreground">LearnPath</h1>
@@ -57,8 +58,8 @@ export function Sidebar() {
           {/* Navigation Menu */}
           <nav className="flex-1 p-4 space-y-2">
             {navigation.map((item) => (
-              <Link 
-                key={item.path} 
+              <Link
+                key={item.path}
                 href={item.path}
                 onClick={() => setIsMobileOpen(false)}
                 data-testid={`nav-${item.label.toLowerCase().replace(' ', '-')}`}
@@ -70,7 +71,7 @@ export function Sidebar() {
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}
                 >
-                  <i className={`${item.icon} w-5`}></i>
+                  <item.Icon className="w-5 h-5" />
                   <span>{item.label}</span>
                 </a>
               </Link>
@@ -100,7 +101,7 @@ export function Sidebar() {
                 className="text-muted-foreground hover:text-foreground"
                 data-testid="button-settings"
               >
-                <i className="fas fa-cog"></i>
+                <Settings className="w-4 h-4" />
               </Button>
             </div>
           </div>
@@ -115,7 +116,7 @@ export function Sidebar() {
         onClick={() => setIsMobileOpen(!isMobileOpen)}
         data-testid="button-mobile-menu"
       >
-        <i className={`fas ${isMobileOpen ? 'fa-times' : 'fa-bars'} text-xl`}></i>
+        {isMobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </Button>
     </>
   );

@@ -1,0 +1,6 @@
+
+> rest-express@1.0.0 dev
+> cross-env NODE_ENV=development node --watch server/index.js
+
+Starting server...
+Failed running 'server/index.js'. Waiting for file changes before restarting...

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { Bot, MessageSquare } from "lucide-react";
 
 export function AiRecommendations() {
   const { toast } = useToast();
@@ -70,7 +71,7 @@ export function AiRecommendations() {
     <Card className="h-full" data-testid="ai-recommendations">
       <CardHeader>
         <div className="flex items-center space-x-2 mb-2">
-          <i className="fas fa-robot text-primary text-lg"></i>
+          <Bot className="w-6 h-6 text-primary" />
           <CardTitle className="text-lg font-semibold">AI Recommendations</CardTitle>
         </div>
         <CardDescription>Personalized suggestions based on your progress</CardDescription>
@@ -110,7 +111,7 @@ export function AiRecommendations() {
             disabled={chatbotMutation.isPending}
             data-testid="button-ask-ai"
           >
-            <i className="fas fa-comments mr-2"></i>
+            <MessageSquare className="w-4 h-4 mr-2" />
             {chatbotMutation.isPending ? "Asking AI..." : "Ask AI for Advice"}
           </Button>
         </div>

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Medal, Flame, Lightbulb } from "lucide-react";
 
 export function Achievements() {
   const { data: achievements, isLoading } = useQuery({
@@ -13,17 +14,17 @@ export function Achievements() {
     {
       id: 1,
       title: "JavaScript Expert",
-      description: "Completed 10 JS challenges", 
-      badgeIcon: "fas fa-medal",
+      description: "Completed 10 JS challenges",
+      Icon: Medal,
       points: 50,
       bgColor: "bg-accent/5",
       iconColor: "text-accent"
     },
     {
       id: 2,
-      title: "Week Streak", 
+      title: "Week Streak",
       description: "7 days learning streak",
-      badgeIcon: "fas fa-fire",
+      Icon: Flame,
       points: 30,
       bgColor: "bg-secondary/5",
       iconColor: "text-secondary"
@@ -32,7 +33,7 @@ export function Achievements() {
       id: 3,
       title: "Quick Learner",
       description: "Finished course ahead of time",
-      badgeIcon: "fas fa-lightbulb", 
+      Icon: Lightbulb,
       points: 25,
       bgColor: "bg-primary/5",
       iconColor: "text-primary"
@@ -91,7 +92,7 @@ export function Achievements() {
           {recentAchievements.map((achievement) => (
             <div key={achievement.id} className={`achievement-glow flex items-center space-x-3 p-3 ${achievement.bgColor} rounded-lg`}>
               <div className={`w-10 h-10 ${achievement.bgColor.replace('/5', '')} rounded-full flex items-center justify-center`}>
-                <i className={`${achievement.badgeIcon} ${achievement.iconColor} text-sm`}></i>
+                <achievement.Icon className={`${achievement.iconColor} w-5 h-5`} />
               </div>
               <div className="flex-1">
                 <h4 className="font-medium text-sm text-foreground">{achievement.title}</h4>

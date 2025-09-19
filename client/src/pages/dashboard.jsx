@@ -8,6 +8,7 @@ import { Achievements } from "@/components/achievements";
 import { ResourceMarketplace } from "@/components/resource-marketplace";
 import { OpportunitiesWidget } from "@/components/opportunities-widget";
 import { Button } from "@/components/ui/button";
+import { HelpCircle, Mic, Bot, MessageSquare } from "lucide-react";
 
 export default function Dashboard() {
   return (
@@ -52,19 +53,19 @@ export default function Dashboard() {
               <h3 className="text-lg font-semibold text-foreground">Quick Actions</h3>
               <div className="flex space-x-3 flex-wrap">
                 <Button className="flex items-center space-x-2" data-testid="button-take-quiz">
-                  <i className="fas fa-question-circle"></i>
+                  <HelpCircle className="w-4 h-4" />
                   <span>Take Quiz</span>
                 </Button>
                 <Button variant="outline" className="flex items-center space-x-2" data-testid="button-mock-interview">
-                  <i className="fas fa-microphone"></i>
+                  <Mic className="w-4 h-4" />
                   <span>Mock Interview</span>
                 </Button>
                 <Button variant="outline" className="flex items-center space-x-2" data-testid="button-ask-ai">
-                  <i className="fas fa-robot"></i>
+                  <Bot className="w-4 h-4" />
                   <span>Ask AI</span>
                 </Button>
                 <Button variant="outline" className="flex items-center space-x-2" data-testid="button-join-discussion">
-                  <i className="fas fa-comments"></i>
+                  <MessageSquare className="w-4 h-4" />
                   <span>Join Discussion</span>
                 </Button>
               </div>

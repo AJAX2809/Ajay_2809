@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
+import { Pencil, Check, Play, Lock, Route, Plus } from "lucide-react";
 
 export function LearningPathDisplay() {
   const { data: learningPaths, isLoading } = useQuery({
@@ -87,7 +88,7 @@ export function LearningPathDisplay() {
           </div>
           <Link href="/learning-path">
             <Button data-testid="button-edit-path">
-              <i className="fas fa-edit mr-2"></i>
+              <Pencil className="w-4 h-4 mr-2" />
               Edit Path
             </Button>
           </Link>
@@ -97,10 +98,10 @@ export function LearningPathDisplay() {
         {activePath ? (
           <div className="space-y-4">
             {currentPathModules.map((module) => (
-              <div 
-                key={module.id} 
+              <div
+                key={module.id}
                 className={`flex items-center space-x-4 p-4 rounded-lg border transition-colors cursor-pointer hover:border-primary/30 ${
-                  module.status === 'in_progress' ? 'border-primary/50 bg-primary/5' : 
+                  module.status === 'in_progress' ? 'border-primary/50 bg-primary/5' :
                   module.status === 'locked' ? 'opacity-60' : 'hover:shadow-sm'
                 }`}
                 data-testid={`module-${module.id}`}
@@ -109,17 +110,15 @@ export function LearningPathDisplay() {
                   module.status === 'completed' ? 'bg-secondary' :
                   module.status === 'in_progress' ? 'bg-primary animate-pulse' : 'bg-muted'
                 }`}>
-                  <i className={`text-sm ${
-                    module.status === 'completed' ? 'fas fa-check text-secondary-foreground' :
-                    module.status === 'in_progress' ? 'fas fa-play text-primary-foreground' :
-                    'fas fa-lock text-muted-foreground'
-                  }`}></i>
+                  {module.status === 'completed' ? <Check className="w-5 h-5 text-secondary-foreground" /> :
+                   module.status === 'in_progress' ? <Play className="w-5 h-5 text-primary-foreground" /> :
+                   <Lock className="w-5 h-5 text-muted-foreground" />}
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-1">
                     <h4 className="font-medium text-foreground">{module.title}</h4>
-                    <Badge 
-                      variant={module.status === 'completed' ? 'secondary' : 
+                    <Badge
+                      variant={module.status === 'completed' ? 'secondary' :
                                module.status === 'in_progress' ? 'default' : 'outline'}
                       className="text-xs"
                     >
@@ -136,7 +135,7 @@ export function LearningPathDisplay() {
         ) : (
           <div className="text-center py-8">
             <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-              <i className="fas fa-route text-2xl text-muted-foreground"></i>
+              <Route className="w-8 h-8 text-muted-foreground" />
             </div>
             <h3 className="text-lg font-medium text-foreground mb-2">No Active Learning Path</h3>
             <p className="text-muted-foreground mb-4">
@@ -144,7 +143,7 @@ export function LearningPathDisplay() {
             </p>
             <Link href="/learning-path">
               <Button data-testid="button-create-first-path">
-                <i className="fas fa-plus mr-2"></i>
+                <Plus className="w-4 h-4 mr-2" />
                 Create Learning Path
               </Button>
             </Link>

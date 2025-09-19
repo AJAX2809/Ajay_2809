@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Star, Youtube, Code, GraduationCap, PlayCircle, Link, ExternalLink, Book } from "lucide-react";
 
 export function ResourceMarketplace() {
   const { data: resources, isLoading } = useQuery({
@@ -14,18 +15,18 @@ export function ResourceMarketplace() {
 
   const getRatingStars = (rating) => {
     return [...Array(5)].map((_, i) => (
-      <i key={i} className={`fas fa-star text-xs ${i < rating ? 'text-accent' : 'text-muted'}`}></i>
+      <Star key={i} className={`w-3 h-3 ${i < rating ? 'text-accent' : 'text-muted'}`} />
     ));
   };
 
   const getPlatformIcon = (platform) => {
     const icons = {
-      youtube: "fab fa-youtube text-red-500",
-      geeksforgeeks: "fas fa-code text-green-600",
-      coursera: "fas fa-graduation-cap text-blue-600", 
-      udemy: "fas fa-play-circle text-purple-600"
+      youtube: <Youtube className="w-4 h-4 text-red-500" />,
+      geeksforgeeks: <Code className="w-4 h-4 text-green-600" />,
+      coursera: <GraduationCap className="w-4 h-4 text-blue-600" />,
+      udemy: <PlayCircle className="w-4 h-4 text-purple-600" />
     };
-    return icons[platform] || "fas fa-link";
+    return icons[platform] || <Link className="w-4 h-4" />;
   };
 
   if (isLoading) {
@@ -68,7 +69,7 @@ export function ResourceMarketplace() {
             <CardDescription>Curated courses and materials for your learning path</CardDescription>
           </div>
           <Button variant="outline" size="sm" data-testid="button-browse-all">
-            <i className="fas fa-external-link-alt mr-2"></i>
+            <ExternalLink className="w-4 h-4 mr-2" />
             Browse All
           </Button>
         </div>
@@ -77,15 +78,15 @@ export function ResourceMarketplace() {
         {resources && resources.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {resources.map((resource) => (
-              <div 
-                key={resource.id} 
+              <div
+                key={resource.id}
                 className="group cursor-pointer hover-lift"
                 onClick={() => handleResourceClick(resource.url)}
                 data-testid={`resource-${resource.id}`}
               >
                 <div className="bg-muted rounded-lg p-4 border border-border hover:border-primary/30 hover:shadow-md transition-all">
                   <div className="flex items-start space-x-3">
-                    <img 
+                    <img
                       src={resource.thumbnail || `https://images.unsplash.com/photo-1593720213428-28a5b9e94613?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=120`}
                       alt={resource.title}
                       className="w-16 h-12 object-cover rounded"
@@ -96,7 +97,7 @@ export function ResourceMarketplace() {
                     />
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-1">
-                        <i className={getPlatformIcon(resource.platform)}></i>
+                        {getPlatformIcon(resource.platform)}
                         <span className="text-xs text-muted-foreground capitalize">{resource.platform}</span>
                       </div>
                       <h4 className="font-medium text-sm text-foreground line-clamp-2 group-hover:text-primary transition-colors">
@@ -144,7 +145,7 @@ export function ResourceMarketplace() {
         ) : (
           <div className="text-center py-8">
             <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-              <i className="fas fa-book text-2xl text-muted-foreground"></i>
+              <Book className="w-8 h-8 text-muted-foreground" />
             </div>
             <h3 className="text-lg font-medium text-foreground mb-2">No Resources Available</h3>
             <p className="text-muted-foreground">
