@@ -1,77 +1,47 @@
-import { Sidebar } from "@/components/sidebar";
-import { TopNav } from "@/components/top-nav";
-import { StatsCards } from "@/components/stats-cards";
-import { ProgressChart } from "@/components/progress-chart";
-import { AiRecommendations } from "@/components/ai-recommendations";
-import { LearningPathDisplay } from "@/components/learning-path-display";
-import { Achievements } from "@/components/achievements";
-import { ResourceMarketplace } from "@/components/resource-marketplace";
-import { OpportunitiesWidget } from "@/components/opportunities-widget";
-import { Button } from "@/components/ui/button";
-import { HelpCircle, Mic, Bot, MessageSquare } from "lucide-react";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function Dashboard() {
+  const { user } = useAuth();
+
   return (
-    <div className="flex h-screen overflow-hidden" data-testid="dashboard-page">
-      <Sidebar />
-      
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <TopNav 
-          title="Dashboard"
-          subtitle="Track your learning progress and achievements"
-        />
-        
-        <main className="flex-1 overflow-auto p-6 space-y-6">
-          <StatsCards />
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 xl:col-span-2">
-              <ProgressChart />
-            </div>
-            <div>
-              <AiRecommendations />
-            </div>
-            
-            <div className="lg:col-span-2">
-              <LearningPathDisplay />
-            </div>
-            <div>
-              <Achievements />
-            </div>
-            
-            <div className="lg:col-span-2">
-              <ResourceMarketplace />
-            </div>
-            <div>
-              <OpportunitiesWidget />
-            </div>
-          </div>
-          
-          {/* Quick Actions Bar */}
-          <div className="bg-card p-4 rounded-lg border border-border">
-            <div className="flex items-center justify-between flex-wrap gap-4">
-              <h3 className="text-lg font-semibold text-foreground">Quick Actions</h3>
-              <div className="flex space-x-3 flex-wrap">
-                <Button className="flex items-center space-x-2" data-testid="button-take-quiz">
-                  <HelpCircle className="w-4 h-4" />
-                  <span>Take Quiz</span>
-                </Button>
-                <Button variant="outline" className="flex items-center space-x-2" data-testid="button-mock-interview">
-                  <Mic className="w-4 h-4" />
-                  <span>Mock Interview</span>
-                </Button>
-                <Button variant="outline" className="flex items-center space-x-2" data-testid="button-ask-ai">
-                  <Bot className="w-4 h-4" />
-                  <span>Ask AI</span>
-                </Button>
-                <Button variant="outline" className="flex items-center space-x-2" data-testid="button-join-discussion">
-                  <MessageSquare className="w-4 h-4" />
-                  <span>Join Discussion</span>
-                </Button>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div className="px-4 py-6 sm:px-0">
+          <div className="border-4 border-dashed border-gray-200 rounded-lg h-96 p-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+              Welcome to Learning Platform
+            </h1>
+            <p className="text-lg text-gray-600 mb-6">
+              Hello, {user?.fullName || user?.username || "User"}! 
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-white p-6 rounded-lg shadow">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  Learning Paths
+                </h3>
+                <p className="text-gray-600">
+                  Explore structured learning paths tailored to your goals.
+                </p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  Community
+                </h3>
+                <p className="text-gray-600">
+                  Connect with other learners and share knowledge.
+                </p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  Opportunities
+                </h3>
+                <p className="text-gray-600">
+                  Discover internships, jobs, and events.
+                </p>
               </div>
             </div>
           </div>
-        </main>
+        </div>
       </div>
     </div>
   );
