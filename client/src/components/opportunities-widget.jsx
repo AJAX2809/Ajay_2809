@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { formatDistanceToNow } from "date-fns";
 import { Link } from "wouter";
+import { Briefcase, Trophy, Users, Building, Star, Clock, Search } from "lucide-react";
 
 export function OpportunitiesWidget() {
   const { data: opportunities, isLoading } = useQuery({
@@ -12,12 +13,12 @@ export function OpportunitiesWidget() {
 
   const getTypeIcon = (type) => {
     const icons = {
-      internship: "fas fa-briefcase text-primary",
-      hackathon: "fas fa-trophy text-accent", 
-      workshop: "fas fa-users text-primary",
-      job: "fas fa-building text-secondary"
+      internship: <Briefcase className="w-4 h-4 text-primary" />,
+      hackathon: <Trophy className="w-4 h-4 text-accent" />,
+      workshop: <Users className="w-4 h-4 text-primary" />,
+      job: <Building className="w-4 h-4 text-secondary" />
     };
-    return icons[type] || "fas fa-star text-muted-foreground";
+    return icons[type] || <Star className="w-4 h-4 text-muted-foreground" />;
   };
 
   const getTypeColor = (type) => {
@@ -95,7 +96,7 @@ export function OpportunitiesWidget() {
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center space-x-2 mb-2">
-                    <i className={getTypeIcon(opportunity.type)}></i>
+                    {getTypeIcon(opportunity.type)}
                     <Badge variant={getTypeColor(opportunity.type)} className="text-xs">
                       {opportunity.type}
                     </Badge>
@@ -127,7 +128,7 @@ export function OpportunitiesWidget() {
                   
                   {opportunity.deadline && (
                     <p className="text-xs text-muted-foreground">
-                      <i className="fas fa-clock mr-1"></i>
+                      <Clock className="w-3 h-3 mr-1" />
                       Deadline: {formatDistanceToNow(new Date(opportunity.deadline), { addSuffix: true })}
                     </p>
                   )}
@@ -147,7 +148,7 @@ export function OpportunitiesWidget() {
         ) : (
           <div className="text-center py-8">
             <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-              <i className="fas fa-briefcase text-2xl text-muted-foreground"></i>
+              <Briefcase className="w-8 h-8 text-muted-foreground" />
             </div>
             <h3 className="text-lg font-medium text-foreground mb-2">No Opportunities</h3>
             <p className="text-muted-foreground mb-4">
@@ -155,7 +156,7 @@ export function OpportunitiesWidget() {
             </p>
             <Link href="/opportunities">
               <Button size="sm" data-testid="button-browse-opportunities">
-                <i className="fas fa-search mr-2"></i>
+                <Search className="w-4 h-4 mr-2" />
                 Browse All
               </Button>
             </Link>

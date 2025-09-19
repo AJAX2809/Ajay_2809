@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
+import { Clock, Trophy, BarChart, Star, ArrowUp } from "lucide-react";
 
 export function StatsCards() {
   const { data: stats, isLoading } = useQuery({
@@ -12,7 +13,7 @@ export function StatsCards() {
       value: stats?.learningHours || 0,
       suffix: "",
       trend: "+12.5% from last week",
-      icon: "fas fa-clock",
+      Icon: Clock,
       color: "primary",
       bgColor: "bg-primary/10",
       textColor: "text-primary"
@@ -22,7 +23,7 @@ export function StatsCards() {
       value: stats?.skillsMastered || 0,
       suffix: "",
       trend: `+${Math.floor((stats?.skillsMastered || 0) * 0.2)} this month`,
-      icon: "fas fa-trophy",
+      Icon: Trophy,
       color: "secondary",
       bgColor: "bg-secondary/10", 
       textColor: "text-secondary"
@@ -32,7 +33,7 @@ export function StatsCards() {
       value: stats?.courseProgress || 0,
       suffix: "%",
       trend: "5 courses active",
-      icon: "fas fa-chart-line",
+      Icon: BarChart,
       color: "accent",
       bgColor: "bg-accent/10",
       textColor: "text-accent"
@@ -42,7 +43,7 @@ export function StatsCards() {
       value: stats?.points || 0,
       suffix: "",
       trend: "Rank #23 in class",
-      icon: "fas fa-star", 
+      Icon: Star,
       color: "primary",
       bgColor: "bg-primary/10",
       textColor: "text-primary"
@@ -84,12 +85,12 @@ export function StatsCards() {
                   {stat.value.toLocaleString()}{stat.suffix}
                 </p>
                 <p className="text-xs text-secondary flex items-center">
-                  <i className="fas fa-arrow-up mr-1"></i>
+                  <ArrowUp className="w-3 h-3 mr-1" />
                   {stat.trend}
                 </p>
               </div>
               <div className={`w-12 h-12 ${stat.bgColor} rounded-lg flex items-center justify-center`}>
-                <i className={`${stat.icon} ${stat.textColor} text-xl`}></i>
+                <stat.Icon className={`${stat.textColor} w-6 h-6`} />
               </div>
             </div>
           </CardContent>
